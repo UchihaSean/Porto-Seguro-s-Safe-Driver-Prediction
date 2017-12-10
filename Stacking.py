@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import cross_val_score
+from sklearn.neural_network import MLPClassifier
 from xgboost import XGBClassifier
 # from lightgbm import LGBMClassifier
 from catboost import CatBoostClassifier
@@ -157,6 +158,10 @@ rf2 = RandomForestClassifier(n_estimators=150,
                                     max_depth=8,
                                     min_samples_leaf=8,
                                     random_state=0)
+
+nn1 = MLPClassifier(hidden_layer_sizes=(512, 64, 16))
+
+nn2 = MLPClassifier(hidden_layer_sizes=(128, 16, ))
 
 
 
