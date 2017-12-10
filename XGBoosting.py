@@ -2,6 +2,7 @@ from xgboost import XGBClassifier
 from sklearn import model_selection
 from sklearn import preprocessing
 from sklearn import decomposition
+from sklearn import metrics
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
@@ -97,15 +98,15 @@ print (len(train_X[0]))
 #         cv_vali_y[num].append(train_y[index])
 
 
-# hyperparameter
-estimator_set=np.arange(500,800,50)
-estimated_gini=[]
-max_depth_set=[2,4,6]
-learning_rate_set=[0.1,0.01,0.001]
-
-best_estimator=400
-best_max_depth=4
-best_learning_rate=0.1
+# # hyperparameter
+# estimator_set=np.arange(500,800,50)
+# estimated_gini=[]
+# max_depth_set=[2,4,6]
+# learning_rate_set=[0.1,0.01,0.001]
+#
+# best_estimator=400
+# best_max_depth=4
+# best_learning_rate=0.1
 
 # for estimator in estimator_set:
 # # for max_depth in max_depth_set:
@@ -139,6 +140,18 @@ best_learning_rate=0.1
 #
 #
 # exit()
+
+# grid search
+xgb= XGBClassifier()
+param_grid = {'n_estimators': [200, 400,600,800], 'max_depth': [12, 14, 16],'learning_rate':[0.1,0.01,0.001]}
+model= model_selection.GridSearchCV(estimator=xgb,param_grid=param_grid,cv=5,scoring='roc_auc')
+model.fit(train_X,train_y)
+best_xgb=model.best_estimator_
+
+best_estimator = best_xgb.n_estimators
+best_max_depth= best_xgb.max_depth
+best_learning_rate=best_xgb.learning_rate
+
 
 # LB
 xgb=XGBClassifier(n_estimators=best_estimator,

@@ -114,7 +114,7 @@ class Ensemble(object):
         return res
 
 
-xgb1=XGBClassifier(n_estimators=100,
+xgb1=XGBClassifier(n_estimators=200,
                   max_depth=6,
                   objective="binary:logistic",
                   learning_rate=0.1,
@@ -125,7 +125,7 @@ xgb1=XGBClassifier(n_estimators=100,
                   gamma=10,
                   reg_alpha=8,
                   reg_lambda=1.3,max_delta_step=1,random_state=101)
-xgb2=XGBClassifier(n_estimators=150,
+xgb2=XGBClassifier(n_estimators=400,
                   max_depth=4,
                   objective="binary:logistic",
                   learning_rate=0.1,
@@ -137,7 +137,7 @@ xgb2=XGBClassifier(n_estimators=150,
                   reg_alpha=8,
                   reg_lambda=1.3,max_delta_step=1,random_state=101)
 
-xgb3=XGBClassifier(n_estimators=200,
+xgb3=XGBClassifier(n_estimators=600,
                   max_depth=2,
                   objective="binary:logistic",
                   learning_rate=0.1,

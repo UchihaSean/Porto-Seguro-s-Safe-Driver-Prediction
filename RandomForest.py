@@ -2,6 +2,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn import model_selection
 from sklearn import preprocessing
 from sklearn import decomposition
+from sklearn import metrics
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
@@ -74,6 +75,10 @@ test_X=test_df.drop(['id'],axis=1).values
 
 
 # # CV
+
+
+
+
 #
 # k_ford_number=3
 # kf=model_selection.KFold(n_splits=k_ford_number,random_state=101)
@@ -96,17 +101,15 @@ test_X=test_df.drop(['id'],axis=1).values
 #         cv_vali_y[num].append(train_y[index])
 
 
-estimator_set=np.arange(100,300,50)
-estimated_gini=[]
-max_depth_set=[2,4,6]
-min_samples_leaf_set=[2,4,6,8,10]
 
-best_estimator=200
-best_max_depth=12
-best_min_samples_leaf=4
-
-
-
+# estimator_set=np.arange(100,300,50)
+# estimated_gini=[]
+# max_depth_set=[2,4,6]
+# min_samples_leaf_set=[2,4,6,8,10]
+#
+# best_estimator=200
+# best_max_depth=12
+# best_min_samples_leaf=4
 
 # for estimator in estimator_set:
 # # for max_depth in max_depth_set:
@@ -133,6 +136,16 @@ best_min_samples_leaf=4
 # plt.show()
 
 
+# grid search
+rf = RandomForestClassifier()
+param_grid = {'n_estimators': [200, 300,500], 'max_depth': [12, 14, 16],'min_samples_leaf':[2,4,6,8,10]}
+model= model_selection.GridSearchCV(estimator=rf,param_grid=param_grid,cv=5,scoring='roc_auc')
+model.fit(train_X,train_y)
+best_rf= model.best_estimator_
+
+best_estimator = best_rf.n_estimators
+best_max_depth= best_rf.max_depth
+best_min_samples_leaf = best_rf.min_samples_leaf
 
 # LB
 
