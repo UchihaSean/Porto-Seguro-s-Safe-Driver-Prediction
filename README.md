@@ -1,3 +1,1 @@
-# Porto-Seguro-s-Safe-Driver-Prediction
-# Porto-Seguro-s-Safe-Driver-Prediction
-# Porto-Seguro-s-Safe-Driver-Prediction
+# Porto-Seguro-s-Safe-Driver-Prediction##### input --- Datasets train and test##### kernels --- model ouputs for combined model##### submit --- final outputs##### useless --- models used before Neural Network models##### ----------##### RandomForest.py RandomForest model##### XGBoosting.py XGBoosting model##### Stacking.py Stacking model##### Combined.py Combined model##### Gini.py Normalized Gini Score for evaluation
